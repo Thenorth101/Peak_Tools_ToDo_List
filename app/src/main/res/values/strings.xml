@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Peak Tools - ToDo List</string>
+
+    <!-- Fragment Tasks -->
+    <string name="add_task_btn">Add a task button</string>
+
+    <!-- Fragment Add Edit tasks -->
+    <string name="save_task_btn">Save a Task Button</string>
+    <string name="add_task_task_hint">Task Name</string>
+    <string name="set_priority_btn">Set a task to priority</string>
+
 </resources>
