@@ -1,7 +1,8 @@
-package com.example.peaktools_todolist
+package com.example.peaktools_todolist.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.peaktools_todolist.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
