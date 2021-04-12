@@ -6,7 +6,7 @@
     android:padding="8dp">
 
     <CheckBox
-        android:id="@+id/checkbox_completed"
+        android:id="@+id/check_box_completed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -14,13 +14,13 @@
         android:minHeight="0dp" />
 
     <TextView
-        android:id="@+id/textview_name"
+        android:id="@+id/text_view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/checkbox_completed"
-        android:layout_alignBottom="@id/checkbox_completed"
+        android:layout_alignTop="@id/check_box_completed"
+        android:layout_alignBottom="@id/check_box_completed"
         android:layout_toStartOf="@id/label_priority"
-        android:layout_toEndOf="@id/checkbox_completed"
+        android:layout_toEndOf="@id/check_box_completed"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"

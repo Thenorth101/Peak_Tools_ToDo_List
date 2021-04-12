@@ -22,7 +22,7 @@
             android:id="@+id/check_box_important"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Important Task" />
+            android:text="Important task" />
 
         <TextView
             android:id="@+id/text_view_date_created"
@@ -39,6 +39,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/float_btn_dimen"
         android:src="@drawable/ic_check_mark"
-        android:contentDescription="@string/save_task_btn" />
+        android:contentDescription="@string/save_task_btn"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

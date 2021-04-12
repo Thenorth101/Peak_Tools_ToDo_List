@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.peaktools_todolist.data.Task
 import com.example.peaktools_todolist.databinding.ItemTaskBinding
 
-class TasksAdapter(private val listener: OnItemClickListener) : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
+class TasksAdapter(private val listener: OnItemClickListener) :
+    ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
         val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,22 +22,23 @@ class TasksAdapter(private val listener: OnItemClickListener) : ListAdapter<Task
         holder.bind(currentItem)
     }
 
-   inner class TasksViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TasksViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.apply {
-                root.setOnClickListener{
+                root.setOnClickListener {
                     val position = adapterPosition
-                    if(position != RecyclerView.NO_POSITION) {
+                    if (position != RecyclerView.NO_POSITION) {
                         val task = getItem(position)
                         listener.onItemClick(task)
                     }
                 }
-                checkboxCompleted.setOnClickListener {
+                checkBoxCompleted.setOnClickListener {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION){
+                    if (position != RecyclerView.NO_POSITION) {
                         val task = getItem(position)
-                        listener.onCheckBoxClick(task, checkboxCompleted.isChecked)
+                        listener.onCheckBoxClick(task, checkBoxCompleted.isChecked)
                     }
                 }
             }
@@ -44,24 +46,24 @@ class TasksAdapter(private val listener: OnItemClickListener) : ListAdapter<Task
 
         fun bind(task: Task) {
             binding.apply {
-                checkboxCompleted.isChecked = task.completed
-                textviewName.text = task.name
-                textviewName.paint.isStrikeThruText = task.completed
+                checkBoxCompleted.isChecked = task.completed
+                textViewName.text = task.name
+                textViewName.paint.isStrikeThruText = task.completed
                 labelPriority.isVisible = task.important
             }
         }
     }
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClick(task: Task)
         fun onCheckBoxClick(task: Task, isChecked: Boolean)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Task>() {
-        override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean =
+        override fun areItemsTheSame(oldItem: Task, newItem: Task) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean = oldItem == newItem
-
+        override fun areContentsTheSame(oldItem: Task, newItem: Task) =
+            oldItem == newItem
     }
 }

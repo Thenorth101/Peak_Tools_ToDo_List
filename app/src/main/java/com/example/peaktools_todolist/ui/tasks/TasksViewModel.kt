@@ -3,6 +3,7 @@ package com.example.peaktools_todolist.ui.tasks
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.example.peaktools_todolist.R
 import com.example.peaktools_todolist.data.PreferencesManager
 import com.example.peaktools_todolist.data.SortOrder
 import com.example.peaktools_todolist.data.Task
@@ -70,12 +71,12 @@ class TasksViewModel @ViewModelInject constructor(
 
     fun onAddEditResult(result: Int) {
         when (result) {
-            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task added")
-            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task updated")
+            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage(R.string.snackbar_task_added)
+            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage(R.string.snackbar_task_updated)
         }
     }
 
-    private fun showTaskSavedConfirmationMessage(text: String) = viewModelScope.launch {
+    private fun showTaskSavedConfirmationMessage(text: Int) = viewModelScope.launch {
         tasksEventChannel.send(TasksEvent.ShowTaskSavedConfirmationMessage(text))
     }
 
@@ -87,7 +88,7 @@ class TasksViewModel @ViewModelInject constructor(
         object NavigateToAddTaskScreen : TasksEvent()
         data class NavigateToEditTaskScreen(val task: Task) : TasksEvent()
         data class ShowUndoDeleteTaskMessage(val task: Task) : TasksEvent()
-        data class ShowTaskSavedConfirmationMessage(val msg: String) : TasksEvent()
+        data class ShowTaskSavedConfirmationMessage(val msg: Int) : TasksEvent()
         object NavigateToDeleteAllCompletedScreen : TasksEvent()
     }
 }
