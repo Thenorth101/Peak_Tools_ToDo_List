@@ -32,7 +32,7 @@ class AddEditTaskFragment : Fragment(R.layout.fragment_add_edit_task) {
             checkBoxImportant.isChecked = viewModel.taskImportance
             checkBoxImportant.jumpDrawablesToCurrentState()
             textViewDateCreated.isVisible = viewModel.task != null
-            textViewDateCreated.text = "Created: ${viewModel.task?.createdDateFormatted}"
+            textViewDateCreated.text = getString(R.string.add_edit_tasks_date_created, viewModel.task?.createdDateFormatted)
 
             editTextTaskName.addTextChangedListener {
                 viewModel.taskName = it.toString()

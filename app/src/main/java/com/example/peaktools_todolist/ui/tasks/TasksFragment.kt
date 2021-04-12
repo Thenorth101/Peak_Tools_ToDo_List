@@ -83,7 +83,11 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
             viewModel.tasksEvent.collect { event ->
                 when (event) {
                     is TasksViewModel.TasksEvent.ShowUndoDeleteTaskMessage -> {
-                        Snackbar.make(requireView(), "Task deleted", Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            requireView(),
+                            R.string.snackbar_task_deleted,
+                            Snackbar.LENGTH_LONG
+                        )
                             .setAction("UNDO") {
                                 viewModel.onUndoDeleteClick(event.task)
                             }.show()
@@ -92,7 +96,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
                         val action =
                             TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment(
                                 null,
-                                "New Task"
+                                getString(R.string.add_edit_task_fragment_new_task_title)
                             )
                         findNavController().navigate(action)
                     }
@@ -100,7 +104,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
                         val action =
                             TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment(
                                 event.task,
-                                "Edit Task"
+                                getString(R.string.add_edit_task_fragment_edit_task_title)
                             )
                         findNavController().navigate(action)
                     }

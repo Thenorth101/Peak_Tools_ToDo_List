@@ -5,6 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.peaktools_todolist.R
 import com.example.peaktools_todolist.data.Task
 import com.example.peaktools_todolist.data.TaskDao
 import com.example.peaktools_todolist.ui.ADD_TASK_RESULT_OK
@@ -37,7 +38,7 @@ class AddEditTaskViewModel @ViewModelInject constructor(
 
     fun onSaveClick() {
         if (taskName.isBlank()) {
-            showInvalidInputMessage("Name cannot be empty")
+            showInvalidInputMessage(R.string.snackbar_invalid_input)
             return
         }
 
@@ -60,12 +61,12 @@ class AddEditTaskViewModel @ViewModelInject constructor(
         addEditTaskEventChannel.send(AddEditTaskEvent.NavigateBackWithResult(EDIT_TASK_RESULT_OK))
     }
 
-    private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
+    private fun showInvalidInputMessage(text: Int) = viewModelScope.launch {
         addEditTaskEventChannel.send(AddEditTaskEvent.ShowInvalidInputMessage(text))
     }
 
     sealed class AddEditTaskEvent {
-        data class ShowInvalidInputMessage(val msg: String) : AddEditTaskEvent()
+        data class ShowInvalidInputMessage(val msg: Int) : AddEditTaskEvent()
         data class NavigateBackWithResult(val result: Int) : AddEditTaskEvent()
     }
 }
