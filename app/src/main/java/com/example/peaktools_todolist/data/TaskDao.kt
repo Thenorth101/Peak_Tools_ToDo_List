@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface TaskDao {
 
     fun getTasks(query: String, sortOrder: SortOrder, hideCompleted: Boolean): Flow<List<Task>> =
-        when(sortOrder){
+        when (sortOrder) {
             SortOrder.BY_DATE -> getTasksSortedByDateCreated(query, hideCompleted)
             SortOrder.BY_NAME -> getTasksSortedByName(query, hideCompleted)
         }
@@ -18,7 +18,6 @@ interface TaskDao {
     @Query("SELECT * FROM task_table WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :searchQuery || '%' ORDER BY important DESC, created")
     fun getTasksSortedByDateCreated(searchQuery: String, hideCompleted: Boolean): Flow<List<Task>>
 
-    //suspend modifier allows room to use the background thread instead of the main thread
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(task: Task)
 
@@ -27,4 +26,7 @@ interface TaskDao {
 
     @Delete
     suspend fun delete(task: Task)
+
+    @Query("DELETE FROM task_table WHERE completed = 1")
+    suspend fun deleteCompletedTasks()
 }
