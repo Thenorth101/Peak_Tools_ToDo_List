@@ -1,7 +1,6 @@
 package com.example.peaktools_todolist.data
 
 import androidx.room.*
-import com.example.peaktools_todolist.ui.tasks.SortOrder
 import kotlinx.coroutines.flow.Flow
 
 @Dao
