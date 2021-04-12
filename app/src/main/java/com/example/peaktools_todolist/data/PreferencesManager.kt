@@ -26,8 +26,8 @@ class PreferencesManager @Inject constructor(@ApplicationContext context: Contex
 
     val preferencesFlow = dataStore.data
         .catch { exception ->
-            if(exception is IOException){
-                Log.e(TAG, "Error reading preferences: ",exception)
+            if (exception is IOException) {
+                Log.e(TAG, "Error reading preferences", exception)
                 emit(emptyPreferences())
             } else {
                 throw exception
@@ -41,13 +41,13 @@ class PreferencesManager @Inject constructor(@ApplicationContext context: Contex
             FilterPreferences(sortOrder, hideCompleted)
         }
 
-    suspend fun updateSortOrder(sortOrder: SortOrder){
+    suspend fun updateSortOrder(sortOrder: SortOrder) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.SORT_ORDER] = sortOrder.name
         }
     }
 
-    suspend fun updateHideCompleted(hideCompleted: Boolean){
+    suspend fun updateHideCompleted(hideCompleted: Boolean) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.HIDE_COMPLETED] = hideCompleted
         }
